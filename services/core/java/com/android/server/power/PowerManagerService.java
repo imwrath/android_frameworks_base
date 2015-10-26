@@ -694,8 +694,6 @@ public final class PowerManagerService extends SystemService
                 Process.THREAD_PRIORITY_DISPLAY, false /*allowIo*/);
         mHandlerThread.start();
         mHandler = new PowerManagerHandler(mHandlerThread.getLooper());
-        mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
-        mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mConstants = new Constants(mHandler);
         mAmbientDisplayConfiguration = new AmbientDisplayConfiguration(mContext);
 
@@ -826,6 +824,10 @@ public final class PowerManagerService extends SystemService
             } catch (RemoteException e) {
                 // Shouldn't happen since in-process.
             }
+
+            // Initialize proximity sensor
+            mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+            mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
             // Go.
             readConfigurationLocked();
