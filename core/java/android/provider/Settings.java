@@ -4222,6 +4222,54 @@ public final class Settings {
          */
         public static final String  RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
 
+        /**
+         * Whether to display airplane in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_AIRPLANE = "powermenu_airplane";
+
+        /**
+         * Whether to display reboot in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_RESTART = "powermenu_restart";
+
+        /**
+         * Whether to display advanced reboot in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_RESTART_RECOVERY = "powermenu_restart_recovery";
+
+        /**
+         * Whether to display power in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_POWER = "powermenu_power";
+
+        /**
+         * Whether to display the users option in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_USERS = "powermenu_users";
+
+        /**
+         * Whether to display the users option in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_LOGOUT = "powermenu_logout";
+
+        /**
+         * Whether to display the power menu dialog while on the lockscreen
+         * @hide
+         */
+        public static final String POWERMENU_LOCKSCREEN = "powermenu_lockscreen";
+
         /** some devices have a extra hw button e.g. n3 on the back on the
          * fingerprint sensor. allow mapping button to key
          *
