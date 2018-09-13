@@ -68,4 +68,6 @@
     <java-symbol type="bool" name="config_notificationTinting_override" />
     <java-symbol type="bool" name="config_useDarkBgNotificationIconTextTinting" />
 
+    <java-symbol type="array" name="config_vendorPlatformSignatures" />
+
 </resources>
