@@ -200,6 +200,10 @@ public class AstroUtils {
         }
     }
 
+    public static boolean deviceSupportNavigationBar(Context context) {
+        return deviceSupportNavigationBarForUser(context, UserHandle.USER_CURRENT);
+    }
+
     public static void toggleCameraFlash() {
         FireActions.toggleCameraFlash();
     }
@@ -235,6 +239,28 @@ public class AstroUtils {
             wm.sendCustomAction(new Intent(full? INTENT_SCREENSHOT : INTENT_REGION_SCREENSHOT));
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static boolean deviceSupportNavigationBarForUser(Context context, int userId) {
+        final boolean showByDefault = context.getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar);
+        final int hasNavigationBar = Settings.System.getIntForUser(
+                context.getContentResolver(),
+                Settings.System.NAVIGATION_BAR_SHOW, -1,
+                userId);
+
+        if (hasNavigationBar == -1) {
+            String navBarOverride = SystemProperties.get("qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                return false;
+            } else if ("0".equals(navBarOverride)) {
+                return true;
+            } else {
+                return showByDefault;
+            }
+        } else {
+            return hasNavigationBar == 1;
         }
     }
 
