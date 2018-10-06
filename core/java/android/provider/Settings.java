@@ -4164,6 +4164,18 @@ public final class Settings {
          */
         public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
 
+        /**
+         * show clear all recents button
+         * @hide
+         */
+        public static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
+
+        /**
+         * location of the clear all rectents button
+         * @hide
+         */
+        public static final String  RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+
         /** some devices have a extra hw button e.g. n3 on the back on the
          * fingerprint sensor. allow mapping button to key
          *
