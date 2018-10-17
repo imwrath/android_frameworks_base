@@ -349,6 +349,13 @@ public class StatusBar extends SystemUI implements DemoMode,
     /** Whether to switch the device into night mode in battery saver. */
     private static final boolean NIGHT_MODE_IN_BATTERY_SAVER = true;
 
+    private static final String[] QS_TILE_THEMES = {
+        "com.android.systemui.qstile.default", // 0
+        "com.android.systemui.qstile.circletrim", // 1
+        "com.android.systemui.qstile.twotonecircletrim", // 2
+        "com.android.systemui.qstile.squircletrim", // 3
+    };
+
     /**
      * Never let the alpha become zero for surfaces that draw with SRC - otherwise the RenderNode
      * won't draw anything and uninitialized memory will show through
@@ -4445,6 +4452,35 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
+    // Switches qs tile style from stock to custom
+    public void updateTileStyle() {
+         int qsTileStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                 Settings.System.QS_TILE_STYLE, 0, mLockscreenUserManager.getCurrentUserId());
+         if (qsTileStyle == 0) {
+             stockTileStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
+         } else {
+             try {
+                 om.setEnabled(QS_TILE_THEMES[qsTileStyle],
+                         true, mLockscreenUserManager.getCurrentUserId());
+             } catch (RemoteException e) {
+           }
+         }
+    }
+
+    // Unload all qs tile styles back to stock
+    public static void stockTileStyle(IOverlayManager om, int userId) {
+        // skip index 0
+        for (int i = 1; i < QS_TILE_THEMES.length; i++) {
+            String qstiletheme = QS_TILE_THEMES[i];
+            try {
+                om.setEnabled(qstiletheme,
+                        false /*disable*/, userId);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void updateDozingState() {
         Trace.traceCounter(Trace.TRACE_TAG_APP, "dozing", mDozing ? 1 : 0);
         Trace.beginSection("StatusBar#updateDozingState");
@@ -5624,6 +5660,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PULSE_APPS_BLACKLIST),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_TILE_STYLE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -5649,6 +5688,10 @@ public class StatusBar extends SystemUI implements DemoMode,
                 updateAccents();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.PULSE_APPS_BLACKLIST))) {
                 setPulseBlacklist();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_TILE_STYLE))) {
+                stockTileStyle();
+                updateTileStyle();
 	    }
             update();
         }
