@@ -350,10 +350,10 @@ public class StatusBar extends SystemUI implements DemoMode,
     private static final boolean NIGHT_MODE_IN_BATTERY_SAVER = true;
 
     private static final String[] QS_TILE_THEMES = {
-        "com.android.systemui.qstile.default", // 0
-        "com.android.systemui.qstile.circletrim", // 1
-        "com.android.systemui.qstile.twotonecircletrim", // 2
-        "com.android.systemui.qstile.squircletrim", // 3
+        "com.android.systemui.qstile.square", // 1
+        "com.android.systemui.qstile.roundedsquare", // 2
+        "com.android.systemui.qstile.squircle", // 3
+        "com.android.systemui.qstile.teardrop", // 4
     };
 
     /**
@@ -4468,7 +4468,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     // Unload all qs tile styles back to stock
-    public static void stockTileStyle(IOverlayManager om, int userId) {
+    public static void unlockTileStyle(IOverlayManager om, int userId) {
         // skip index 0
         for (int i = 1; i < QS_TILE_THEMES.length; i++) {
             String qstiletheme = QS_TILE_THEMES[i];
@@ -5690,7 +5690,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 setPulseBlacklist();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.QS_TILE_STYLE))) {
-                stockTileStyle();
+                unlockQsTileStyles();
                 updateTileStyle();
 	    }
             update();
