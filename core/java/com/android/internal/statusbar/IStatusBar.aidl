@@ -155,4 +155,5 @@ oneway interface IStatusBar
      * Astro
      */
     void toggleCameraFlash();
+    void leftInLandscapeChanged(boolean isLeft);
 }
