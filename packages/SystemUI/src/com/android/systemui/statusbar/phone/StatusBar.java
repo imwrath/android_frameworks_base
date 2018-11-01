@@ -4452,6 +4452,18 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
+    // Check for any QS tile styles overlay
+    public static boolean isUsingQsTileStyles(IOverlayManager om, int userId, int qsstyle) {
+        OverlayInfo themeInfo = null;
+        try {
+            themeInfo = om.getOverlayInfo(QS_TILE_THEMES[qsstyle],
+                    userId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return themeInfo != null && themeInfo.isEnabled();
+    }
+
     // Switches qs tile style from stock to custom
     public void updateTileStyle() {
          int qsTileStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
