@@ -4844,6 +4844,12 @@ public final class Settings {
         public static final String PULSE_AUTO_COLOR = "pulse_auto_color";
 
         /**
+         * Apps to skip for Pulse
+         * @hide
+         */
+        public static final String PULSE_APPS_BLACKLIST = "pulse_apps_blacklist";
+
+        /**
          * @hide
          */
         public static final String FULL_GESTURE_NAVBAR = "full_gesture_navbar";
