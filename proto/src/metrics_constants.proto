@@ -6122,5 +6122,6 @@ message MetricsEvent {
     //Astro custom constants
     ASTRO = 1500;
     ASTRO_SETTINGS = 1501;
+    METEOR = 1502;
   }
 }
