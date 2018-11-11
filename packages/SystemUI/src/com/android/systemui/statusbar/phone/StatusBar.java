@@ -5517,7 +5517,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             boolean showNavBarBool = showNavBar == 1;
             if (showNavBarBool !=  mShowNavBar){
 
-                  mShowNavBar = PixysUtils.deviceSupportNavigationBar(mContext);
+                  mShowNavBar = AstroUtils.deviceSupportNavigationBar(mContext);
                   if (DEBUG) Log.v(TAG, "updateNavigationBar=" + mShowNavBar);
 
                   if (mShowNavBar) {
