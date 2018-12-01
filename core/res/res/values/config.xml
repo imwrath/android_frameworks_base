@@ -3532,4 +3532,7 @@
 
     <!-- Brand value for attestation of misprovisioned device. -->
     <string name="config_misprovisionedBrandValue" translatable="false"></string>
+
+     <!-- Component name for the activity that will be presenting the Oreo's Recents UI -->
+    <string name="config_recentsComponentNameOreo" translatable="false">com.android.systemui/.recents.RecentsActivity</string>
 </resources>

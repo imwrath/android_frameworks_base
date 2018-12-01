@@ -3418,4 +3418,8 @@
 
   <java-symbol type="string" name="config_misprovisionedDeviceModel" />
   <java-symbol type="string" name="config_misprovisionedBrandValue" />
+
+  <!-- Oreo's recents component activity -->
+  <java-symbol type="string" name="config_recentsComponentNameOreo" />
+
 </resources>
