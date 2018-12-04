@@ -3535,4 +3535,8 @@
 
      <!-- Component name for the activity that will be presenting the Oreo's Recents UI -->
     <string name="config_recentsComponentNameOreo" translatable="false">com.android.systemui/.recents.RecentsActivity</string>
-</resources>
+  
+    <!-- Component name for default assistant on this device -->
+    <string name="config_defaultAssistantComponentName"></string>
+
+ </resources>
