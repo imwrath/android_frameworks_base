@@ -4465,22 +4465,20 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     // Switches qs tile style from stock to custom
-    public void updateTileStyle() {
-         int qsTileStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
-                 Settings.System.QS_TILE_STYLE, 0, mLockscreenUserManager.getCurrentUserId());
+    public static void updateTileStyle(IOverlayManager om, int userId, int qsTileStyle) {
          if (qsTileStyle == 0) {
-             stockTileStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
+             unlockQsTileStyles(om, userId);
          } else {
              try {
                  om.setEnabled(QS_TILE_THEMES[qsTileStyle],
-                         true, mLockscreenUserManager.getCurrentUserId());
+                         true, userId);
              } catch (RemoteException e) {
            }
          }
     }
 
     // Unload all qs tile styles back to stock
-    public static void unlockTileStyle(IOverlayManager om, int userId) {
+    public static void unlockQsTileStyles(IOverlayManager om, int userId) {
         // skip index 0
         for (int i = 1; i < QS_TILE_THEMES.length; i++) {
             String qstiletheme = QS_TILE_THEMES[i];
@@ -5702,8 +5700,10 @@ public class StatusBar extends SystemUI implements DemoMode,
                 setPulseBlacklist();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.QS_TILE_STYLE))) {
-                unlockQsTileStyles();
-                updateTileStyle();
+	        int qsTileStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
+        	        Settings.System.QS_TILE_STYLE, 0, mLockscreenUserManager.getCurrentUserId());
+                unlockQsTileStyles(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
+                updateTileStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId(), qsTileStyle);
 	    }
             update();
         }
