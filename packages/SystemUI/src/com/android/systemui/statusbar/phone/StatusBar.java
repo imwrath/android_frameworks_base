@@ -350,11 +350,12 @@ public class StatusBar extends SystemUI implements DemoMode,
     private static final boolean NIGHT_MODE_IN_BATTERY_SAVER = true;
 
     private static final String[] QS_TILE_THEMES = {
-	    "default", // 0
+	"default", // 0
         "com.android.systemui.qstile.square", // 1
         "com.android.systemui.qstile.roundedsquare", // 2
         "com.android.systemui.qstile.squircle", // 3
         "com.android.systemui.qstile.teardrop", // 4
+	"com.android.systemui.qstile.droplet", //5
     };
 
     /**
