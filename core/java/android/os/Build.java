@@ -54,7 +54,7 @@ public class Build {
     /**
      * @hide
      */
-    public static final String TITAN_DISPLAY_VERSION = getString("ro.titian.display.version");
+    public static final String ASTRO_DISPLAY_VERSION = getString("ro.astro.display.version");
 
     /** The name of the overall product. */
     public static final String PRODUCT = getString("ro.product.name");
