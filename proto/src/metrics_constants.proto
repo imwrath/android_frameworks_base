@@ -6120,8 +6120,8 @@ message MetricsEvent {
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
     //Astro custom constants
-    ASTRO = 1500;
-    ASTRO_SETTINGS = 1501;
-    METEOR = 1502;
+    ASTRO = 2500;
+    ASTRO_SETTINGS = 2501;
+    METEOR = 2502;
   }
 }
