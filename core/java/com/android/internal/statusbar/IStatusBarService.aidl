@@ -103,7 +103,7 @@ interface IStatusBarService
     void hideFingerprintDialog();
 
     /**
-     * Pixys
+     * Astro
      */
     void toggleCameraFlash();
 }
